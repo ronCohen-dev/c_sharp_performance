@@ -1,0 +1,18 @@
+﻿services:
+  streams_demo_app:
+    container_name: streams_demo_app
+    build:
+      context: .
+      dockerfile: streams_demo_app/Dockerfile
+    ports:
+      - "8010:8010"
+    env_file:
+      - ./streams_demo_app/.env
+    networks:
+      - app_network
+    volumes:
+      - ./data-protection-keys:/home/app/.aspnet/DataProtection-Keys
+
+networks:
+  app_network:
+    external: true
